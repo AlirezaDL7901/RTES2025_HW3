@@ -62,8 +62,23 @@ Complete the provided C++ programs `signal-receiver.cpp` and `signal-sender.cpp`
 
 Answer the following:
 - ❓ What is the difference between the **SIGINT** and **SIGKILL** signals?
-- ❓ Which signals can be caught or handled by a process?
+- **SIGINT (Signal Interrupt - 2)**:
+  - SIGINT is an interrupt signal equivalent to C^ in the Linux terminal, which gently closes the program
+  - Can be **caught and handled** by the process using signal handlers.
+
+- **SIGKILL (Signal Kill - 9)**:
+  - Forcibly **terminates** a process immediately.
+  - **Cannot be caught, blocked, or ignored** by the process.
+
+- ❓ Which signalscan be caught or handled by a process?
+- Most signals **can be caught and handled** like:
+  - `SIGINT`, `SIGTERM`, `SIGUSR1`, `SIGUSR2`, `SIGHUP`, `SIGALRM`, etc.
+- Signals that **cannot be caught or handled** are:
+  - `SIGKILL` and `SIGSTOP`.
+
 - ❓ How many signals are defined in Linux?
+- Linux defines **at least 31 standard signals** with some additional **real-time signals**.
+- My system, to be specific, contains **62 defined signals** in total.
 
 #### 3. Shared Memory
 Complete the provided C++ programs `shm-writer.cpp` and `shm-reader.cpp`:
@@ -72,6 +87,13 @@ Complete the provided C++ programs `shm-writer.cpp` and `shm-reader.cpp`:
 
 Answer the following:
 - ❓ What are the key differences between FIFO and shared memory for IPC?
+- **Shared Memory**:
+  - it is possible for multiple processes to map and write to a shared memory that can be read by one or more other processes.
+  - when processes stop, the memory remains and is not destroyed, so until *shm_unlink* is called, the memory data remains fixed and accessible.
+  - no Data copying, resulting in faster communication.
+- **FIFO**:
+  - Unidirectional communication, in a slower way that the one with shared memory.
+  - Data destroyed after the process is terminated.. 
 
 ---
 
